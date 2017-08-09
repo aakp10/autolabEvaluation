@@ -1,9 +1,7 @@
-
-
-
-
-
 var mysql=require('mysql');
+var fs = require('fs');
+const tables = JSON.parse(fs.readFileSync('./config.json', 'utf8'));
+
 var teamID,memberID;
 
 var connection=mysql.createConnection({
@@ -22,8 +20,8 @@ connection.connect(function(error){
 			
 			}});
 var assignTeamMarks=function (args,logger=console){
-		console.log(args.idNo);
-		var fetchTeamID="SELECT teamId FROM table_team WHERE memberID = \'"+args.idNo+"\'";
+		
+		var fetchTeamID="SELECT teamId FROM "+tables.team +" WHERE memberID = \'"+args.idNo+"\'";
 		
 			connection.query(fetchTeamID, function(err, rows, fields){
 				//if(rows.length!=0)
@@ -31,13 +29,13 @@ var assignTeamMarks=function (args,logger=console){
 					teamID=rows[0];
 					console.log(teamID.teamId);
 					teamID=teamID.teamId;
-						var fetchMemberID="SELECT * FROM table_team WHERE teamId = \'"+teamID+"\'and memberID <>\'"+args.idNo+"\'";
+						var fetchMemberID="SELECT * FROM "+tables.team+"  WHERE teamId = \'"+teamID+"\'and memberID <>\'"+args.idNo+"\'";
 		
 					connection.query(fetchMemberID, function(err, rows, fields){
 						//if(rows.length!=0)
 						{	console.log(rows);
 							memberID=rows[0].memberID;
-							var fetchMemberMarks="SELECT * FROM table_evaluation WHERE memberID = \'"+memberID+"\' or memberID = \'"+args.idNo+"\'";
+							var fetchMemberMarks="SELECT * FROM "+ tables.evaluation+"  WHERE memberID = \'"+memberID+"\' or memberID = \'"+args.idNo+"\'";
 					connection.query(fetchMemberMarks, function(err, rows, fields){
 						console.log(rows);
 							var data1=rows[0],data2=rows[1];
@@ -52,7 +50,7 @@ var assignTeamMarks=function (args,logger=console){
 								}
 								console.log(assignMarks);
 
-								var assign="UPDATE table_evaluation SET marks=\'"+assignMarks+"\' WHERE memberID=\'"+memberID+"\'" ;
+								var assign="UPDATE "+ tables.evaluation+" SET marks=\'"+assignMarks+"\' WHERE memberID=\'"+memberID+"\'" ;
          			 connection.query(assign, function(err, rows, fields) {if(err) console.log(err);});
 				
 						
