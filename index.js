@@ -1,30 +1,5 @@
 
 
-var express=require('express');
-var app=express();
-var fs=require("fs");
-var bodyPraser=require("body-parser");
-app.use(bodyPraser.urlencoded({extended:true}));
-app.post('/',function(req,res){
-	console.log(req.body.id);
-	assignTeamMarks(req.body.id);
-	console.log(showAll());
-	res.redirect("/");
-});
-
-app.get('/',function(req,res){
-
-    fs.readFile( __dirname + "/index.html",function(error,data){               
-                    res.writeHead(200, {"Content-Type": "text/html"});
-                    res.write(data, "utf8");
-                    res.end();
-                    });
-	
-});
-app.listen(3000,function(){
-  console.log("server running");
-});
-
 
 
 
@@ -46,9 +21,9 @@ connection.connect(function(error){
 			{console.log(error);
 			
 			}});
-function assignTeamMarks(id_no){
-	
-		var fetchTeamID="SELECT teamId FROM table_team WHERE memberID = \'"+id_no+"\'";
+var assignTeamMarks=function (args,logger=console){
+		console.log(args.idNo);
+		var fetchTeamID="SELECT teamId FROM table_team WHERE memberID = \'"+args.idNo+"\'";
 		
 			connection.query(fetchTeamID, function(err, rows, fields){
 				//if(rows.length!=0)
@@ -56,13 +31,13 @@ function assignTeamMarks(id_no){
 					teamID=rows[0];
 					console.log(teamID.teamId);
 					teamID=teamID.teamId;
-						var fetchMemberID="SELECT * FROM table_team WHERE teamId = \'"+teamID+"\'and memberID <>\'"+id_no+"\'";
+						var fetchMemberID="SELECT * FROM table_team WHERE teamId = \'"+teamID+"\'and memberID <>\'"+args.idNo+"\'";
 		
 					connection.query(fetchMemberID, function(err, rows, fields){
 						//if(rows.length!=0)
 						{	console.log(rows);
 							memberID=rows[0].memberID;
-							var fetchMemberMarks="SELECT * FROM table_evaluation WHERE memberID = \'"+memberID+"\' or memberID = \'"+id_no+"\'";
+							var fetchMemberMarks="SELECT * FROM table_evaluation WHERE memberID = \'"+memberID+"\' or memberID = \'"+args.idNo+"\'";
 					connection.query(fetchMemberMarks, function(err, rows, fields){
 						console.log(rows);
 							var data1=rows[0],data2=rows[1];
@@ -99,27 +74,8 @@ function assignTeamMarks(id_no){
 			
 		}
 
-
-
-
-
-function showAll(){
-	connection.connect(function(error){
-		if(error)
-			{console.log("error from showall");
-			return;
-			}
-		var data="SELECT * FROM table_evaluation";
-		
-			connection.query(data, function(err, rows, fields){
-				if(rows.length!=0)
-				{
-					return data;
-				}
-			});
-		});
-}
-
-
+module.exports = {
+    assignTeamMarks: assignTeamMarks
+};
 
 
