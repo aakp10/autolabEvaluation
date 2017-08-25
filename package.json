@@ -2,16 +2,20 @@
   "name": "autlab",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "indexnew.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha || true"
   },
   "author": "Karuna Grewal",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "caporal": "^0.7.0",
+    "chai": "^4.1.1",
+    "commander": "^2.11.0",
     "express": "^4.15.3",
     "fs": "0.0.1-security",
+    "mocha": "^3.5.0",
     "mysql": "^2.14.1"
   }
 }
