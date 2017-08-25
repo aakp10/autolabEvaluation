@@ -25,7 +25,7 @@ connection.connect(function(error){
 			{console.log(error);
 			
 			}});
-var assignTeamMarks=function (idNo){
+var assignTeamMarks=function (idNo,cb){
 		
 		var fetchTeamID="SELECT teamId FROM "+tables.team +" WHERE memberID = \'"+idNo+"\'";
 		
@@ -49,27 +49,29 @@ var assignTeamMarks=function (idNo){
 								if(data1.marks>=data2.marks)
 								{assignMarks=data1.marks;
 								id=data2.memberID;
-									 returnVal={
-													HighestMemMarks:data1.marks,
-													OtherMemMarks:data2.marks,
-													teamMarks:assignMarks
+									 
+													returnVal.HighestMemMarks=data1.marks;
+													returnVal.OtherMemMarks=data2.marks;
+													returnVal.teamMarks=assignMarks;
 
-												};
+											
 								}
 							else
 								{assignMarks=data2.marks;
 								id=data1.memberID;
-									returnVal={
-													HighestMemMarks:data2.marks,
-												OtherMemMarks:data1.marks,
-													teamMarks:assignMarks
-
-												};
+								
+													returnVal.HighestMemMarks=data2.marks;
+													returnVal.OtherMemMarks=data1.marks;
+													returnVal.teamMarks=assignMarks;
 								}
 								console.log(assignMarks);
 
 								var assign="UPDATE "+ tables.evaluation+" SET marks=\'"+assignMarks+"\' WHERE memberID=\'"+memberID+"\'" ;
-         			 connection.query(assign, function(err, rows, fields) {if(err) console.log(err);});
+         			 connection.query(assign, function(err, rows, fields) {if(err) console.log(err);
+												cb(returnVal);								
+
+
+         			 });
 				
 						
 					});
@@ -83,11 +85,13 @@ var assignTeamMarks=function (idNo){
 
 
 
-				}});
+				}
+			});
+
+	
 		
 			
-					
-			return returnVal;
+		
 		}
 
 module.exports = {
