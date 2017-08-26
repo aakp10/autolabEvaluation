@@ -18,12 +18,7 @@ var connection=mysql.createConnection({
 		});
 //VARIABLES 
 var teamID,memberID ,assignMarks, id;
-var returnVal={
-	HighestMemMarks:"",
-	OtherMemMarks:"",
-	teamMarks:""
 
-};
 //creating a connection to the mysql server
 connection.connect(function(error){
 		if(error)
@@ -65,26 +60,20 @@ var assignTeamMarks=function (idNo,cb){
 								if(data1.marks>=data2.marks)
 								{	assignMarks=data1.marks;
 									id=data2.memberID;
-									//the values are returned for only testing purpose 
-									returnVal.HighestMemMarks=data1.marks;
-									returnVal.OtherMemMarks=data2.marks;
-									returnVal.teamMarks=assignMarks;
-
+																
 											
 								}
 							else
 								{	assignMarks=data2.marks;
 									id=data1.memberID;
 								
-									returnVal.HighestMemMarks=data2.marks;
-									returnVal.OtherMemMarks=data1.marks;
-									returnVal.teamMarks=assignMarks;
+									
 								}
 								console.log(assignMarks);
 								//query to update the table with the second member's marks
 								var assign="UPDATE "+ tables.evaluation+" SET marks=\'"+assignMarks+"\' WHERE memberID=\'"+id+"\'" ;
          			 connection.query(assign, function(err, rows, fields) {if(err) console.log(err);
-												cb(returnVal);								
+																				
          			 							});
 				
 						

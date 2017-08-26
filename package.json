@@ -1,8 +1,8 @@
 {
-  "name": "autlab",
+  "name": "autolab",
   "version": "1.0.0",
   "description": "",
-  "main": "indexnew.js",
+  "main": "module.js",
   "scripts": {
     "test": "mocha || true"
   },
