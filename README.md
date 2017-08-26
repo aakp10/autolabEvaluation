@@ -14,5 +14,8 @@ This is present in the Exportable module branch
 	* table names: (present in the _config.json_)
 		* table_team 
 		* table_evaluation
+
+## Exportable version
+* To use this refer to its [README](https://github.com/aakp10/autolabEvaluation/tree/exportableModule) file
    
     
