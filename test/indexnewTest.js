@@ -3,23 +3,38 @@ const assert = require('chai').assert;
 const app = require('../indexnew');
 
 // Results
- app.assignTeamMarks("2016a7ps018g",function(assignTeamMark){
+ 
   
-  describe('assignTeamMarks()', function(){
+  describe('assignTeamMarks()', function(done){
     it('should assign max marks to the team', function(){
-      console.log(assignTeamMark.HighestMemMarks);
-      console.log(assignTeamMark.teamMarks);
-      assert.equal(assignTeamMark.HighestMemMarks,assignTeamMark.teamMarks);
+      app.assignTeamMarks("2016a7ps016g",function(assignTeamMark){
+     // console.log(assignTeamMark.HighestMemMarks);
+      //console.log(assignTeamMark.teamMarks);
+      assert.isAtLeast(assignTeamMarks.HighestMemMarks-assignTeamMarks.OtherMemMarks,10, 'xxxx');
+      
     });
+    });
+     it('the assigned marks should be maximum', function(){
+     app.assignTeamMarks("2016a7ps018g",function(assignTeamMark){
+      //console.log(assignTeamMark.HighestMemMarks);
+      //console.log(assignTeamMark.teamMarks);
+     assert.equal(assignTeamMark.HighestMemMarks,assignTeamMark.teamMarks);
+      
+    });
+    
+     
+    });
+     done;
 
-    it('the assigned marks should be maximum', function(){
+   /* it('the assigned marks should be maximum', function(){
     // assert.isAtMost(4,4,"a");
-     assert.isAtLeast(assignTeamMarks.HighestMemMarks-assignTeamMarks.OtherMemMarks,0, 'xxxx');
-    });
+    assert.equal(assignTeamMark.HighestMemMarks,assignTeamMark.teamMarks);
+     
+    });*/
   });
 
 
-});
+
 
 
 

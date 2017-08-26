@@ -37,11 +37,11 @@ LOCK TABLES `table_evaluation` WRITE;
 INSERT INTO `table_evaluation` VALUES ('2016a7ps000g',100);
 INSERT INTO `table_evaluation` VALUES ('2016a7ps012g',100);
 INSERT INTO `table_evaluation` VALUES ('2016a7ps013g',50);
-INSERT INTO `table_evaluation` VALUES ('2016a7ps014g',50);
+INSERT INTO `table_evaluation` VALUES ('2016a7ps014g',0);
 INSERT INTO `table_evaluation` VALUES ('2016a7ps015g',75);
 INSERT INTO `table_evaluation` VALUES ('2016a7ps016g',0);
 INSERT INTO `table_evaluation` VALUES ('2016a7ps018g',45);
-INSERT INTO `table_evaluation` VALUES ('2016a7ps017g',45);
+INSERT INTO `table_evaluation` VALUES ('2016a7ps017g',0);
 /*!40000 ALTER TABLE `table_evaluation` ENABLE KEYS */;
 UNLOCK TABLES;
 
