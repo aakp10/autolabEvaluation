@@ -9,7 +9,7 @@ const app = require('../indexnew');
     it('the marks of one person should be more than or equal to the other', function(){
       app.assignTeamMarks("2016a7ps016g",function(assignTeamMark){
      
-      assert.isAtLeast(assignTeamMarks.HighestMemMarks-assignTeamMarks.OtherMemMarks,10, 'xxxx');
+      assert.isAtLeast(assignTeamMarks.HighestMemMarks-assignTeamMarks.OtherMemMarks,0, 'xxxx');
       
     });
     });
