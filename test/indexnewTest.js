@@ -6,18 +6,16 @@ const app = require('../indexnew');
  
   
   describe('assignTeamMarks()', function(done){
-    it('should assign max marks to the team', function(){
+    it('the marks of one person should be more than or equal to the other', function(){
       app.assignTeamMarks("2016a7ps016g",function(assignTeamMark){
-     // console.log(assignTeamMark.HighestMemMarks);
-      //console.log(assignTeamMark.teamMarks);
+     
       assert.isAtLeast(assignTeamMarks.HighestMemMarks-assignTeamMarks.OtherMemMarks,10, 'xxxx');
       
     });
     });
-     it('the assigned marks should be maximum', function(){
+     it('the assigned marks should be maximum of the two ', function(){
      app.assignTeamMarks("2016a7ps018g",function(assignTeamMark){
-      //console.log(assignTeamMark.HighestMemMarks);
-      //console.log(assignTeamMark.teamMarks);
+      
      assert.equal(assignTeamMark.HighestMemMarks,assignTeamMark.teamMarks);
       
     });
@@ -26,11 +24,7 @@ const app = require('../indexnew');
     });
      done;
 
-   /* it('the assigned marks should be maximum', function(){
-    // assert.isAtMost(4,4,"a");
-    assert.equal(assignTeamMark.HighestMemMarks,assignTeamMark.teamMarks);
-     
-    });*/
+   
   });
 
 
